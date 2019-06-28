@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/Zero-One/config-repo  # 远程git仓库的地址
+          username: username  # 以及相应的账户名
+          password: password  # 和密码
+          basedir: E:\Java_IDEA\config\basedir  # 可以使用这个配置项来指定本地git仓库的路径
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8974
