@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: service-1
+  zipkin:
+    base-url: http://zipkin-service:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+  datasource:
+    url: jdbc:mysql://39.96.19.25:3306/test_a?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: '{cipher}db2c9552733e766525a26b5b45f2d548f65066333bd564368d47d7a01ada3ef2'
+    # 使用druid数据源
+    #type: com.alibaba.druid.pool.DruidDataSource
+
+
+
+
+
+# sleuth.sampler.probability 是监控的百分比，默认的是0.1表示10%,这里给1.0表示全部监控
+# spring.zipkin.base-url：是zipkin-server的服务路径
+#  security:
+#    user:
+#      name: "client"
+#      password: "client"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  file: var/log/service-order.log
+server:
+  port: 8766
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+#    metadata-map:
+#      user.name:  ${spring.security.user.name}
+#      user.password:  ${spring.security.user.password}
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
